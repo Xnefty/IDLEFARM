@@ -1,5 +1,5 @@
 const gameState = {
-    money: 100000,
+    money: 100,
     activeTab: 'crops',
     animalFarmUnlocked: false,
     animalFarmCost: 5000,
