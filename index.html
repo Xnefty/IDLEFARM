@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idle Farmer Preview</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="top-bar glass-panel">
+            <div class="logo">🌾 Idle Farmer</div>
+
+            <div class="header-center" id="tab-navigation" style="display: none;">
+                <button class="tab-btn active" id="tab-crops-btn" onclick="switchTab('crops')">🌾 Crops</button>
+                <button class="tab-btn" id="tab-animals-btn" onclick="switchTab('animals')">🐄 Animals</button>
+            </div>
+
+            <div class="stats">
+                <div style="display:flex; gap:10px;">
+                    <button class="unlock-btn" id="unlock-animal-btn" onclick="openUnlockModal()" disabled>
+                        🔓 Unlock Animals (🪙 5,000)
+                    </button>
+                    <button class="btn-cancel" onclick="wipeSave()"
+                        style="padding: 10px 15px; border-radius:12px; font-weight: 800; cursor: pointer;">
+                        🗑️ Wipe
+                    </button>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">🪙</span>
+                    <span id="money-display">10</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Crops View -->
+        <main class="game-area" id="crops-view">
+            <aside class="sidebar glass-panel">
+                <h2>Crop Shop</h2>
+                <div class="shop-items">
+                    <button class="shop-btn" id="buy-crop-field-btn">
+                        <span class="btn-icon">🔲</span>
+                        <div class="btn-info">
+                            <span class="btn-name">Buy Field</span>
+                            <span class="btn-cost" id="crop-field-cost-display">🪙 50</span>
+                        </div>
+                    </button>
+                    <div id="crop-prestige-container"
+                        style="display:flex; flex-direction:column; gap:5px; margin-top:5px;"></div>
+
+                    <h3 style="margin-top: 10px;">Seeds</h3>
+                    <div class="seed-selector" id="crop-shop">
+                        <!-- Seeds populated by JS -->
+                    </div>
+                </div>
+            </aside>
+            <section class="farm-grid" id="crop-grid">
+                <!-- Fields populated by JS -->
+            </section>
+        </main>
+
+        <!-- Animals View -->
+        <main class="game-area" id="animals-view" style="display: none;">
+            <aside class="sidebar glass-panel">
+                <h2>Animal Shop</h2>
+                <div class="shop-items">
+                    <button class="shop-btn" id="buy-animal-field-btn">
+                        <span class="btn-icon">🔲</span>
+                        <div class="btn-info">
+                            <span class="btn-name">Buy Pen</span>
+                            <span class="btn-cost" id="animal-field-cost-display">🪙 50</span>
+                        </div>
+                    </button>
+                    <div id="animal-prestige-container"
+                        style="display:flex; flex-direction:column; gap:5px; margin-top:5px;"></div>
+
+                    <h3 style="margin-top: 10px;">Livestock</h3>
+                    <div class="seed-selector" id="animal-shop">
+                        <!-- Animals populated by JS -->
+                    </div>
+                </div>
+            </aside>
+            <section class="farm-grid" id="animal-grid">
+                <!-- Pens populated by JS -->
+            </section>
+        </main>
+    </div>
+
+    <!-- Prestige Confirmation Modal -->
+    <div class="modal-overlay" id="prestige-modal" style="display: none; z-index: 110;">
+        <div class="modal-content glass-panel" style="width: 400px;">
+            <h2 id="prestige-modal-title">Prestige Fields?</h2>
+            <p style="margin-top: 10px; color: var(--text-main);" id="prestige-modal-desc">
+                Are you sure you want to merge 9 fields into 1 stronger field? This cannot be undone.
+            </p>
+            <div class="modal-actions" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                <button class="btn-cancel" onclick="closePrestigeModal()">No thanks</button>
+                <button class="btn-confirm" onclick="confirmPrestige()">Yes, Prestige!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unlock Modal -->
+    <div class="modal-overlay" id="unlock-modal" style="display: none;">
+        <div class="modal-content glass-panel">
+            <h2>Unlock Animal Farm?</h2>
+            <p style="margin-top: 10px; color: var(--text-main);">Expand your agricultural empire with livestock!
+                Animals act similarly to crops and yield passive income.</p>
+            <p class="cost" style="font-weight: 800; font-size: 20px; color: #65a30d; margin: 20px 0;">Cost: 🪙 5000</p>
+            <div class="modal-actions" style="display: flex; gap: 10px; justify-content: flex-end;">
+                <button class="btn-cancel" onclick="closeUnlockModal()">Cancel</button>
+                <button class="btn-confirm" onclick="buyAnimalFarm()">Unlock</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
